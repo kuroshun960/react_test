@@ -13,6 +13,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import purple from '@material-ui/core/colors/purple';
 
+//子コンポーネントのMainTableを読み込む
+import MainTable from '../components/MainTable';
+
 //スタイルの定義
 const useStyles = makeStyles((theme) => createStyles({
     card: {
@@ -20,11 +23,12 @@ const useStyles = makeStyles((theme) => createStyles({
         padding: theme.spacing(3),
     },
     table: {
-        minWidth: 650,
-      },
+    minWidth: 650,
+    },
     tableHead: {
         backgroundColor: purple['A100'],
     },
+
 }));
 
 
@@ -62,54 +66,10 @@ function Home() {
                     <div className="card">
                         <h1>タスク管理</h1>
                         <Card className={classes.card}>
-                            {/* テーブル部分の定義 */}
-                            <TableContainer component={Paper}>
 
+                            {/* テーブル部分の定義 子コンポーネントのMainTableを描画*/}
+                            <MainTable headerList={headerList} rows={rows} />
 
-                                <Table className={classes.table} aria-label="simple table">
-                                    {/* ヘッダー部分 */}
-                                    <TableHead className={classes.tableHead}>
-
-                                        {/* mapで生成 */}
-                                        <TableRow>
-                                            {headerList.map((item, index) => (
-                                                <TableCell align="center" key={index}>{item}</TableCell>
-                                                
-                                            ))}
-                                            
-                                        </TableRow>
-                                        
-
-                                    </TableHead>
-
-
-                                     {/* ボディ部分 */}
-                                    <TableBody>
-
-                                        {/* mapで回すときはkeyが必要 */}
-                                        {rows.map((row, index) => (
-                                            <TableRow key={index}>
-
-                                                {/*<TableCell align="center">{row.name}</TableCell>*/}
-                                                {/*<TableCell align="center">{row.content}</TableCell>*/}
-                                                {/*<TableCell align="center">{row.editBtn}</TableCell>*/}
-                                                {/*<TableCell align="center">{row.deleteBtn}</TableCell>*/}
-
-                                                {/* オブジェクトをmapで回し、連想配列として取得、キーを要素を利用してテーブルのボディを生成 */}
-                                                {Object.keys(row).map(function(key, index) {
-                                                    return(
-                                                        <TableCell align="center" key={index}>{row[key]}</TableCell>
-                                                    );
-                                                })}
-
-
-                                            </TableRow>
-                                        ))}
-
-                                    </TableBody>
-                                </Table>
-
-                            </TableContainer>
                         </Card>
                     </div>
                 </div>
