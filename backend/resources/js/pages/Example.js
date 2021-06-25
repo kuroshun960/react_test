@@ -16,7 +16,8 @@ function Example() {
 
                         <div className="card-body">I'm an example component!</div>
 
-                        <Button color="primary" variant="contained">Hello World</Button> 
+                        
+                        <Button color="primary" variant="contained">Homeに遷移ボタン</Button> 
                         
                     </div>
                 </div>
@@ -24,6 +25,9 @@ function Example() {
         </div>
     );
 }
+
+
+
 
 
 // 以下の記述でViewのappに、Example.jsの内容↑が書き出される。

@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-    # id="app"の中身を空する変更
+        # id="app"の中身を空する変更
     </div>
 </body>
 </html>
