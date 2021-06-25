@@ -32,11 +32,26 @@ const useStyles = makeStyles((theme) => createStyles({
 //ヘッダーのコンテンツ用の配列定義
 const headerList = ['名前', 'タスク内容', '編集', '完了'];
 
+//テーブルのボディの各要素を、定義した変数にオブジェクトとして格納
+let rows = [
+    {
+        name: "モーリー",
+        content: "肩トレ",
+        editBtn: <Button color="secondary" variant="contained">編集</Button>,
+        deleteBtn: <Button color="primary" variant="contained">完了</Button>,
+    },{
+        name: "ドンキーコング",
+        content: "バナナ補給",
+        editBtn: <Button color="secondary" variant="contained">編集</Button>,
+        deleteBtn: <Button color="primary" variant="contained">完了</Button>,
+    },
+];
+
 
 
 
 function Home() {
-    
+
     //定義したスタイルを利用するための設定
     const classes = useStyles();
 
@@ -49,31 +64,51 @@ function Home() {
                         <Card className={classes.card}>
                             {/* テーブル部分の定義 */}
                             <TableContainer component={Paper}>
+
+
                                 <Table className={classes.table} aria-label="simple table">
                                     {/* ヘッダー部分 */}
                                     <TableHead className={classes.tableHead}>
+
+                                        {/* mapで生成 */}
                                         <TableRow>
                                             {headerList.map((item, index) => (
                                                 <TableCell align="center" key={index}>{item}</TableCell>
+                                                
                                             ))}
+                                            
                                         </TableRow>
+                                        
+
                                     </TableHead>
+
+
                                      {/* ボディ部分 */}
                                     <TableBody>
-                                        <TableRow>
-                                            <TableCell align="center">モーリー</TableCell>
-                                            <TableCell align="center">肩トレ</TableCell>
-                                            <TableCell align="center"><Button color="secondary" variant="contained">編集</Button></TableCell>
-                                            <TableCell align="center"><Button color="primary" variant="contained">完了</Button></TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell align="center">ドンキーコング</TableCell>
-                                            <TableCell align="center">バナナ補給</TableCell>
-                                            <TableCell align="center"><Button color="secondary" variant="contained">編集</Button></TableCell>
-                                            <TableCell align="center"><Button color="primary" variant="contained">完了</Button></TableCell>
-                                        </TableRow>
+
+                                        {/* mapで回すときはkeyが必要 */}
+                                        {rows.map((row, index) => (
+                                            <TableRow key={index}>
+
+                                                {/*<TableCell align="center">{row.name}</TableCell>*/}
+                                                {/*<TableCell align="center">{row.content}</TableCell>*/}
+                                                {/*<TableCell align="center">{row.editBtn}</TableCell>*/}
+                                                {/*<TableCell align="center">{row.deleteBtn}</TableCell>*/}
+
+                                                {/* オブジェクトをmapで回し、連想配列として取得、キーを要素を利用してテーブルのボディを生成 */}
+                                                {Object.keys(row).map(function(key, index) {
+                                                    return(
+                                                        <TableCell align="center" key={index}>{row[key]}</TableCell>
+                                                    );
+                                                })}
+
+
+                                            </TableRow>
+                                        ))}
+
                                     </TableBody>
                                 </Table>
+
                             </TableContainer>
                         </Card>
                     </div>
